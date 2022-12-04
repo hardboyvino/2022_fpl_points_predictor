@@ -40,7 +40,7 @@ def random_forest_regression(which_gw_are_we_on):
     join_predictions(os.path.join("prediction_folder", "Random MID PerApp 4GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random MID PerApp 5GWs 3Ahead.csv"))
     join_predictions(os.path.join("prediction_folder", "Random FWD PerApp 4GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random FWD PerApp 5GWs 3Ahead.csv"))
 
-    combine_predictions(os.path.join("prediction_folder", "Random GK PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random MID PerApp 4GWs Prediction.csv"), os.path.join("prediction_folder", "Random FWD PerApp 4GWs Prediction.csv"), "Linear Regression")
+    combine_predictions(os.path.join("prediction_folder", "Random GK PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random MID PerApp 4GWs Prediction.csv"), os.path.join("prediction_folder", "Random FWD PerApp 4GWs Prediction.csv"), "Random Regression")
 
     delete_files_and_folders_after_prediction()
 
@@ -58,22 +58,22 @@ def linear_regression(which_gw_are_we_on):
         os.mkdir("prediction_folder")
 
     # --- ADD PREDICTION TO PLAYER filenameS --- #
-    single_predict(pickling=os.path.join("linear_regress", "Random Forest GK PerApp 2GWs.pkl"), filename=os.path.join(player_data, "GK PerApp 3GWs.csv"))
-    single_predict(pickling=os.path.join("linear_regress", "Random Forest DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
-    single_predict(pickling=os.path.join("linear_regress", "Random Forest MID PerApp 4GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 4GWs.csv"))
-    single_predict(pickling=os.path.join("linear_regress", "Random Forest FWD PerApp 4GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 3GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Random Forest 3Ahead GK PerApp 2GWs.pkl"), filename=os.path.join(player_data, "GK PerApp 3GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Random Forest 3Ahead DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Random Forest 3Ahead MID PerApp 5GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Random Forest 3Ahead FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress", "Linear GK PerApp 3GWs.pkl"), filename=os.path.join(player_data, "GK PerApp 3GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress", "Linear DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress", "Linear MID PerApp 4GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 4GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress", "Linear FWD PerApp 3GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 3GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead GK PerApp 3GWs.pkl"), filename=os.path.join(player_data, "GK PerApp 3GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
 
     # --- JOIN THE 1AHEAD AND 3AHEAD PREDICTIONS --- #
-    join_predictions(os.path.join("prediction_folder", "Random GK PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random GK PerApp 2GWs 3Ahead.csv"))
-    join_predictions(os.path.join("prediction_folder", "Random DEF PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random DEF PerApp 2GWs 3Ahead.csv"))
-    join_predictions(os.path.join("prediction_folder", "Random MID PerApp 4GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random MID PerApp 5GWs 3Ahead.csv"))
-    join_predictions(os.path.join("prediction_folder", "Random FWD PerApp 4GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random FWD PerApp 5GWs 3Ahead.csv"))
+    join_predictions(os.path.join("prediction_folder", "Linear GK PerApp 3GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear GK PerApp 3GWs 3Ahead.csv"))
+    join_predictions(os.path.join("prediction_folder", "Linear DEF PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear DEF PerApp 2GWs 3Ahead.csv"))
+    join_predictions(os.path.join("prediction_folder", "Linear MID PerApp 4GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear MID PerApp 2GWs 3Ahead.csv"))
+    join_predictions(os.path.join("prediction_folder", "Linear FWD PerApp 3GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear FWD PerApp 5GWs 3Ahead.csv"))
 
-    combine_predictions(os.path.join("prediction_folder", "Random GK PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random MID PerApp 4GWs Prediction.csv"), os.path.join("prediction_folder", "Random FWD PerApp 4GWs Prediction.csv"), "Linear Regression")
+    combine_predictions(os.path.join("prediction_folder", "Linear GK PerApp 3GWs Prediction.csv"), os.path.join("prediction_folder", "Linear DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Linear MID PerApp 4GWs Prediction.csv"), os.path.join("prediction_folder", "Linear FWD PerApp 3GWs Prediction.csv"), "Linear Regression")
 
     delete_files_and_folders_after_prediction()
 
