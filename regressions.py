@@ -70,7 +70,7 @@ def random_forest_regression_60minutes(which_gw_are_we_on):
     join_predictions(os.path.join("prediction_folder", "Random MID PerApp 3GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random MID PerApp 5GWs 3Ahead.csv"))
     join_predictions(os.path.join("prediction_folder", "Random FWD PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Random FWD PerApp 3GWs 3Ahead.csv"))
 
-    combine_predictions(os.path.join("prediction_folder", "Random DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random MID PerApp 3GWs Prediction.csv"), os.path.join("prediction_folder", "Random FWD PerApp 2GWs Prediction.csv"), "Random Regression 60minutes")
+    combine_predictions_60minutes(os.path.join("prediction_folder", "Random DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Random MID PerApp 3GWs Prediction.csv"), os.path.join("prediction_folder", "Random FWD PerApp 2GWs Prediction.csv"), "Random Regression 60minutes")
 
     delete_files_and_folders_after_prediction()
 
@@ -104,6 +104,36 @@ def linear_regression(which_gw_are_we_on):
     join_predictions(os.path.join("prediction_folder", "Linear FWD PerApp 3GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear FWD PerApp 5GWs 3Ahead.csv"))
 
     combine_predictions(os.path.join("prediction_folder", "Linear GK PerApp 3GWs Prediction.csv"), os.path.join("prediction_folder", "Linear DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Linear MID PerApp 4GWs Prediction.csv"), os.path.join("prediction_folder", "Linear FWD PerApp 3GWs Prediction.csv"), "Linear Regression")
+
+    delete_files_and_folders_after_prediction()
+
+
+def linear_regression_60minutes(which_gw_are_we_on):
+    """Add predicted points for 1GW and 3GWs and export to prediction folder\n
+    Join the 1GW and 3GW filenames into a single filename for each position.\n
+    Combine all the joined filenames for all positions into 1 csv filename exported to the main folder.\n
+    Delete the prediction_folder."""
+    # --- REFERENCE THE FOLDER WITH THE SCRAPED filenameS --- #
+    player_data = f"GW {which_gw_are_we_on} Files"
+
+    # --- IF PREDICTION FOLDER DOES NOT EXIST, CREATE IT --- #
+    if not os.path.exists("prediction_folder"):
+        os.mkdir("prediction_folder")
+
+    # --- ADD PREDICTION TO PLAYER filenameS --- #
+    single_predict(pickling=os.path.join("linear_regress", "Linear DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress", "Linear MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress", "Linear FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
+
+    # --- JOIN THE 1AHEAD AND 3AHEAD PREDICTIONS --- #
+    join_predictions(os.path.join("prediction_folder", "Linear DEF PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear DEF PerApp 2GWs 3Ahead.csv"))
+    join_predictions(os.path.join("prediction_folder", "Linear MID PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear MID PerApp 2GWs 3Ahead.csv"))
+    join_predictions(os.path.join("prediction_folder", "Linear FWD PerApp 5GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear FWD PerApp 5GWs 3Ahead.csv"))
+
+    combine_predictions_60minutes(os.path.join("prediction_folder", "Linear DEF PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Linear MID PerApp 2GWs Prediction.csv"), os.path.join("prediction_folder", "Linear FWD PerApp 5GWs Prediction.csv"), "Linear Regression 60minutes")
 
     delete_files_and_folders_after_prediction()
 
