@@ -121,12 +121,12 @@ def linear_regression_60minutes(which_gw_are_we_on):
         os.mkdir("prediction_folder")
 
     # --- ADD PREDICTION TO PLAYER filenameS --- #
-    single_predict(pickling=os.path.join("linear_regress", "Linear DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
-    single_predict(pickling=os.path.join("linear_regress", "Linear MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
-    single_predict(pickling=os.path.join("linear_regress", "Linear FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
-    three_gw_predict(pickling=os.path.join("linear_regress", "Linear 3Ahead FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress_60", "Linear DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress_60", "Linear MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
+    single_predict(pickling=os.path.join("linear_regress_60", "Linear FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress_60", "Linear 3Ahead DEF PerApp 2GWs.pkl"), filename=os.path.join(player_data, "DEF PerApp 2GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress_60", "Linear 3Ahead MID PerApp 2GWs.pkl"), filename=os.path.join(player_data, "MID PerApp 2GWs.csv"))
+    three_gw_predict(pickling=os.path.join("linear_regress_60", "Linear 3Ahead FWD PerApp 5GWs.pkl"), filename=os.path.join(player_data, "FWD PerApp 5GWs.csv"))
 
     # --- JOIN THE 1AHEAD AND 3AHEAD PREDICTIONS --- #
     join_predictions(os.path.join("prediction_folder", "Linear DEF PerApp 2GWs 1Ahead.csv"), os.path.join("prediction_folder", "Linear DEF PerApp 2GWs 3Ahead.csv"))
