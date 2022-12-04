@@ -8,7 +8,7 @@ from ffhub_scraper_functions import (
     stat_type_custom,
     which_gw_are_we_on,
 )
-from regressions import random_forest_regression, linear_regression, random_forest_regression_60minutes
+from regressions import random_forest_regression, linear_regression, random_forest_regression_60minutes, linear_regression_60minutes
 from player_scrapper_functions import player_scraper_functions
 
 
@@ -25,3 +25,4 @@ player_scraper_functions(driver, which_gw_are_we_on)
 random_forest_regression(which_gw_are_we_on)
 linear_regression(which_gw_are_we_on)
 random_forest_regression_60minutes(which_gw_are_we_on)
+linear_regression_60minutes(which_gw_are_we_on)
