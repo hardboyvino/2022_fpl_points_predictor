@@ -8,7 +8,7 @@ from ffhub_scraper_functions import (
     stat_type_custom,
     which_gw_are_we_on,
 )
-from other_prediction_functions import delete_files_after_use, move_scraped_files, single_predict, three_gw_predict
+from regressions import random_forest_regression, linear_regression
 from player_scrapper_functions import player_scraper_functions
 
 
@@ -20,3 +20,7 @@ stat_type_custom(driver, wait)
 load_all_players(driver, wait)
 
 player_scraper_functions(driver, which_gw_are_we_on)
+
+# --- RUN ALGORITHMS TO GET PREDICTED POINTS FILES --- #
+random_forest_regression(which_gw_are_we_on)
+linear_regression(which_gw_are_we_on)
