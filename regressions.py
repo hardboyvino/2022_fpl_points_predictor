@@ -230,6 +230,24 @@ def combine_predictions(gks, defs, mids, fwds, regression):
     print(combined_players)
 
 
+def combine_predictions_60minutes(defs, mids, fwds, regression):
+    """Combine all the prediction csvs into 1 single file."""
+    # --- READ EACH FILE INTO ITS OWN DATAFRAME --- #
+    defs = pd.read_csv(defs)
+    mids = pd.read_csv(mids)
+    fwds = pd.read_csv(fwds)
+
+    # --- CONCAT THE DIFFERENT DATAFRAMES INTO 1 --- #
+    # --- ADD THE NEW COLUMN NAMES TO THE DATAFRAME --- #
+    combined_players = pd.concat([defs, mids, fwds], ignore_index=True)
+    combined_players.columns = ["Name", "Position", "Team Name", "Price", "Predict", "Predict3GW"]
+
+    # --- EXPORT CONCATED DATAFRAME TO A NEW CSV --- #
+    combined_players.to_csv(f"{regression}.csv", index=False)
+
+    print(combined_players)
+
+
 def delete_files_and_folders_after_prediction():
     """Delete the files in Prediction Folder then delete the folder itself."""
     folder = "prediction_folder"
