@@ -47,10 +47,12 @@ def chrome_options_driver_wait():
     chrome_options.add_experimental_option("debuggerAddress", "localhost:1991")
     driver = webdriver.Chrome(options=chrome_options)
     wait = WebDriverWait(driver, 10)
-    return driver,wait
+    return driver, wait
 
 
-def move_sliders_and_scrape_new_season(driver, which_gw_are_we_on, filename, gws_to_consider):
+def move_sliders_and_scrape_new_season(
+    driver, which_gw_are_we_on, filename, gws_to_consider
+):
     """Move the sliders for scraping and get data for the specific gameweek."""
     # --- GAMEWEEK FILES DIRECTORY --- #
     # --- CHECK IF THE DIRECTORY FOR THIS GW EXISTS, IF NOT, CREATE IT
@@ -72,19 +74,27 @@ def move_sliders_and_scrape_new_season(driver, which_gw_are_we_on, filename, gws
     print(pixels_per_gw)
 
     # --- MOVE THE UPPER SLIDER BACK BY 1 GW. THIS IS BECAUSE OF HOW FFHUB WEBSITE RESPONDS CURRENTLY --- #
-    ActionChains(driver).drag_and_drop_by_offset(slider_2, -(float(pixels_per_gw)), 0).perform()
+    ActionChains(driver).drag_and_drop_by_offset(
+        slider_2, -(float(pixels_per_gw)), 0
+    ).perform()
     short_sleep()
 
     # ---- MOVE THE UPPER SLIDER BACK TO ITS ORIGINAL POSITION --- #
-    ActionChains(driver).drag_and_drop_by_offset(slider_2, (float(pixels_per_gw)), 0).perform()
+    ActionChains(driver).drag_and_drop_by_offset(
+        slider_2, (float(pixels_per_gw)), 0
+    ).perform()
     short_sleep()
 
     # --- MOVE THE LOWER SLIDER TO THE CURRENT GAMEWEEK --- #
-    ActionChains(driver).drag_and_drop_by_offset(slider_1, constants.SLIDER_WIDTH, 0).perform()
+    ActionChains(driver).drag_and_drop_by_offset(
+        slider_1, constants.SLIDER_WIDTH, 0
+    ).perform()
     short_sleep()
 
     # --- MOVE THE LOWER SLIDER TO THE REQUIRED GAMEWEEK --- #
-    ActionChains(driver).drag_and_drop_by_offset(slider_1, -((gws_to_consider - 1) * float(pixels_per_gw)), 0).perform()
+    ActionChains(driver).drag_and_drop_by_offset(
+        slider_1, -((gws_to_consider - 1) * float(pixels_per_gw)), 0
+    ).perform()
     random_sleeps()
 
     # --- SCRAPE PLAYER DATA AND PRINT A MESSAGE TO LET THE USER KNOW THE PROGRAM HAS REACHED THIS STAGE --- #
@@ -97,7 +107,9 @@ def move_sliders_and_scrape_new_season(driver, which_gw_are_we_on, filename, gws
     short_sleep()
 
     # --- RESET LOWER SLIDER TO GAMEWEEK 1 --- #
-    ActionChains(driver).drag_and_drop_by_offset(slider_1, -constants.SLIDER_WIDTH, 0).perform()
+    ActionChains(driver).drag_and_drop_by_offset(
+        slider_1, -constants.SLIDER_WIDTH, 0
+    ).perform()
     short_sleep()
 
 
@@ -137,10 +149,16 @@ def which_gw_are_we_on():
 def load_all_players(driver, wait):
     """Load all possible players for the current selection."""
     # --- FIND THE DROPDOWN TO SELECT HOW MANY PLAYERS TO LOAD --- #
-    driver.find_element(By.CSS_SELECTOR, "div[class='my-4'] div[class=' css-r71ql9-singleValue']").click()
+    driver.find_element(
+        By.CSS_SELECTOR, "div[class='my-4'] div[class=' css-r71ql9-singleValue']"
+    ).click()
 
     # --- SELECT ALL --- #
-    load_all = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[contains(text(),'All (slow)')]")))
+    load_all = wait.until(
+        EC.visibility_of_element_located(
+            (By.XPATH, "//div[contains(text(),'All (slow)')]")
+        )
+    )
     load_all.click()
     random_sleeps()
 

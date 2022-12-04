@@ -6,7 +6,15 @@ For DEFs - PerApp 2GWs, PerApp 4GWs, PerApp 5GWs, PerApp 6GWs
 For MIDs - PerApp 5GWs, PerApp 6GWs
 For FWDs - PerApp 5GWs, PerApp 6GWs
 """
-from ffhub_scraper_functions import click_perapp, move_sliders_and_scrape_new_season, select_def_position, select_fwd_position, select_gk_position, select_mid_position, click_per_start
+from ffhub_scraper_functions import (
+    click_perapp,
+    move_sliders_and_scrape_new_season,
+    select_def_position,
+    select_fwd_position,
+    select_gk_position,
+    select_mid_position,
+    click_per_start,
+)
 
 
 def main():
@@ -28,7 +36,12 @@ def gk_perstart(driver, which_gw_are_we_on):
 
     select_gk_position(driver)
     click_per_start(driver)
-    move_sliders_and_scrape_new_season(driver, which_gw_are_we_on = which_gw_are_we_on, filename=f"{position} PerStart {gws_to_consider}GWs.csv", gws_to_consider=gws_to_consider)
+    move_sliders_and_scrape_new_season(
+        driver,
+        which_gw_are_we_on=which_gw_are_we_on,
+        filename=f"{position} PerStart {gws_to_consider}GWs.csv",
+        gws_to_consider=gws_to_consider,
+    )
     select_gk_position(driver)
 
 
@@ -40,7 +53,12 @@ def gk_perapp(driver, which_gw_are_we_on):
     for gw in gws_to_consider:
         select_gk_position(driver)
         click_perapp(driver)
-        move_sliders_and_scrape_new_season(driver, which_gw_are_we_on = which_gw_are_we_on, filename=f"{position} PerApp {gw}GWs.csv", gws_to_consider=gw)
+        move_sliders_and_scrape_new_season(
+            driver,
+            which_gw_are_we_on=which_gw_are_we_on,
+            filename=f"{position} PerApp {gw}GWs.csv",
+            gws_to_consider=gw,
+        )
         select_gk_position(driver)
 
 
@@ -52,7 +70,12 @@ def def_perapp(driver, which_gw_are_we_on):
     for gw in gws_to_consider:
         select_def_position(driver)
         click_perapp(driver)
-        move_sliders_and_scrape_new_season(driver, which_gw_are_we_on = which_gw_are_we_on, filename=f"{position} PerApp {gw}GWs.csv", gws_to_consider=gw)
+        move_sliders_and_scrape_new_season(
+            driver,
+            which_gw_are_we_on=which_gw_are_we_on,
+            filename=f"{position} PerApp {gw}GWs.csv",
+            gws_to_consider=gw,
+        )
         select_def_position(driver)
 
 
@@ -64,7 +87,12 @@ def mid_perapp(driver, which_gw_are_we_on):
     for gw in gws_to_consider:
         select_mid_position(driver)
         click_perapp(driver)
-        move_sliders_and_scrape_new_season(driver, which_gw_are_we_on = which_gw_are_we_on, filename=f"{position} PerApp {gw}GWs.csv", gws_to_consider=gw)
+        move_sliders_and_scrape_new_season(
+            driver,
+            which_gw_are_we_on=which_gw_are_we_on,
+            filename=f"{position} PerApp {gw}GWs.csv",
+            gws_to_consider=gw,
+        )
         select_mid_position(driver)
 
 
@@ -76,7 +104,12 @@ def fwd_perapp(driver, which_gw_are_we_on):
     for gw in gws_to_consider:
         select_fwd_position(driver)
         click_perapp(driver)
-        move_sliders_and_scrape_new_season(driver, which_gw_are_we_on = which_gw_are_we_on, filename=f"{position} PerApp {gw}GWs.csv", gws_to_consider=gw)
+        move_sliders_and_scrape_new_season(
+            driver,
+            which_gw_are_we_on=which_gw_are_we_on,
+            filename=f"{position} PerApp {gw}GWs.csv",
+            gws_to_consider=gw,
+        )
         select_fwd_position(driver)
 
 
