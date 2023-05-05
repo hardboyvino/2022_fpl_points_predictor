@@ -66,8 +66,8 @@ def move_sliders_and_scrape_new_season(
     # constants.SLIDER_WIDTH = 569
 
     # --- FIND THE SLIDER ELEMENTS AND STORE EACH AS ITS OWN VARIABLE --- #
-    slider_1 = driver.find_element(By.XPATH, "(//span[@aria-label='range-slider'])[3]")
-    slider_2 = driver.find_element(By.XPATH, "(//span[@aria-label='range-slider'])[4]")
+    slider_1 = driver.find_element(By.XPATH, "(//span[@id='gameweek-slider-thumb'])[1]")
+    slider_2 = driver.find_element(By.XPATH, "(//span[@aria-label='Maximum'])[2]")
 
     # --- DIVIDE SLIDER WIDTH BY 1 LESS OF WHICHEVER GAMEWEEK THE GAME IS ON --- #
     pixels_per_gw = f"{constants.SLIDER_WIDTH / (which_gw_are_we_on - 1):.14f}"
@@ -142,7 +142,7 @@ def scrape_players(driver):
 def which_gw_are_we_on():
     """Get the most recent gameweek from FFHUB website."""
     driver = chrome_options_driver_only()
-    slider_2 = driver.find_element(By.XPATH, "(//span[@aria-label='range-slider'])[4]")
+    slider_2 = driver.find_element(By.XPATH, "(//span[@aria-label='Maximum'])[2]")
     return int(slider_2.text)
 
 
@@ -150,15 +150,17 @@ def load_all_players(driver, wait):
     """Load all possible players for the current selection."""
     # --- FIND THE DROPDOWN TO SELECT HOW MANY PLAYERS TO LOAD --- #
     driver.find_element(
-        By.CSS_SELECTOR, "div[class='my-4'] div[class=' css-r71ql9-singleValue']"
+        By.XPATH, "(//div[contains(@class,'css-tg04vo-control')])[5]"
     ).click()
 
+    medium_sleep()
     # --- SELECT ALL --- #
-    load_all = wait.until(
-        EC.visibility_of_element_located(
-            (By.XPATH, "//div[contains(text(),'All (slow)')]")
-        )
-    )
+    load_all = driver.find_element(By.XPATH, "//div[contains(text(),'All (slow)')]")
+    # load_all = wait.until(
+    #     EC.visibility_of_element_located(
+    #         (By.XPATH, "//div[contains(text(),'All (slow)')]") 
+    #     )
+    # )
     load_all.click()
     random_sleeps()
 
@@ -177,7 +179,11 @@ def click_per_start(driver):
 
 def click_perapp(driver):
     """Click on Per Apperance Fixture Filter."""
-    driver.find_element(By.CSS_SELECTOR, "#perapp").click()
+    # locator = (By.ID, "#per-app-radio-button")
+    # element = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(locator))
+    # element.click()
+    element = driver.find_element(By.CSS_SELECTOR, "#per-app-radio-button").click()
+    driver.execute_script("arguments[0].click();", element)
     medium_sleep()
 
 
@@ -185,7 +191,7 @@ def stat_type_custom(driver, wait):
     """This function goes into the Stat Type option and selects Custom."""
     # --- CLICK THE DROPDOWN --- #
     driver.find_element(
-        By.XPATH, value="(//div[contains(@class,'css-seq4h5-control')])[3]"
+        By.XPATH, value="(//div[contains(@class,'css-tg04vo-control')])[3]"
     ).click()
 
     short_sleep()
@@ -205,7 +211,7 @@ def stat_type_custom(driver, wait):
 
 def unclick_positions(driver, i):
     """Find the player position element on the page and click on those specified by the function calling."""
-    driver.find_element(By.XPATH, "//input[@id=" + str(i) + "]").click()
+    driver.find_element(By.XPATH, "//input[@name=" + str(i) + "]").click()
 
 
 def select_mid_position(driver):

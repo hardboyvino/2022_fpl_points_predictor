@@ -23,16 +23,32 @@ def main():
 
 def player_scraper_functions(driver, which_gw_are_we_on):
     """Combined all the player scraper functions into 1 super function."""
-    gk_perapp(driver, which_gw_are_we_on)
-    def_perapp(driver, which_gw_are_we_on)
-    mid_perapp(driver, which_gw_are_we_on)
-    fwd_perapp(driver, which_gw_are_we_on)
+    all_players(driver, which_gw_are_we_on)
+    # gk_perapp(driver, which_gw_are_we_on)
+    # def_perapp(driver, which_gw_are_we_on)
+    # mid_perapp(driver, which_gw_are_we_on)
+    # fwd_perapp(driver, which_gw_are_we_on)
+
+def all_players(driver, which_gw_are_we_on):
+    position = "ALL"
+    gws_to_consider = [10]
+
+    for gw in gws_to_consider:
+        # select_gk_position(driver)
+        # click_perapp(driver)
+        move_sliders_and_scrape_new_season(
+            driver,
+            which_gw_are_we_on=which_gw_are_we_on,
+            filename=f"{position} PerApp {gw}GWs.csv",
+            gws_to_consider=gw,
+        )
+        # select_gk_position(driver)
 
 
 def gk_perstart(driver, which_gw_are_we_on):
     """Scrape Goalkeepers Per Start for past 2 gameweeks."""
     position = "GK"
-    gws_to_consider = 2
+    gws_to_consider = 10
 
     select_gk_position(driver)
     click_per_start(driver)
@@ -48,7 +64,7 @@ def gk_perstart(driver, which_gw_are_we_on):
 def gk_perapp(driver, which_gw_are_we_on):
     """Scrape Goalkeepers Per App for past 2 and 3 gameweeks."""
     position = "GK"
-    gws_to_consider = [2, 3]
+    gws_to_consider = [10]
 
     for gw in gws_to_consider:
         select_gk_position(driver)
@@ -65,7 +81,7 @@ def gk_perapp(driver, which_gw_are_we_on):
 def def_perapp(driver, which_gw_are_we_on):
     """Scrape Defenders Per App for past 2 gameweeks."""
     position = "DEF"
-    gws_to_consider = [2]
+    gws_to_consider = [10]
 
     for gw in gws_to_consider:
         select_def_position(driver)
@@ -82,7 +98,7 @@ def def_perapp(driver, which_gw_are_we_on):
 def mid_perapp(driver, which_gw_are_we_on):
     """Scrape Midfielders Per App for past 2, 3, 4 and 5 gameweeks."""
     position = "MID"
-    gws_to_consider = [2, 3, 4, 5]
+    gws_to_consider = [10]
 
     for gw in gws_to_consider:
         select_mid_position(driver)
@@ -99,7 +115,7 @@ def mid_perapp(driver, which_gw_are_we_on):
 def fwd_perapp(driver, which_gw_are_we_on):
     """Scrape Forwards Per App for past 2, 3, 4 and 5 gameweeks."""
     position = "FWD"
-    gws_to_consider = [2, 3, 4, 5]
+    gws_to_consider = [10]
 
     for gw in gws_to_consider:
         select_fwd_position(driver)
